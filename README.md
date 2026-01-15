@@ -50,3 +50,28 @@ Running tests
     0 scenarios passed, 0 failed, 1 error, 0 skipped
     3 steps passed, 0 failed, 0 skipped, 1 undefined
     Took 0min 23.497s
+
+    HTML-pretty-formater report
+
+    Creates a test result report which can shown in a browser
+
+    Installation:
+    web page: https://pypi.org/project/behave-html-pretty-formatter/
+    Pip installation command: python3 -m pip install behave-html-pretty-formatter
+    Create behave.ini file within the project folder and copy and save the code displayed on the web page
+
+
+    Create Report
+    command: behave search.feature -f behave_html_pretty_formatter:PrettyHTMLFormatter -o reports/report.htmlbehave-html-pretty-formatter
+        search.feature - test file to be tested
+        -f behave_html_pretty_formatter:PrettyHTMLFormatter - to format the report into pretty html formatter
+        -o - cammand to open a folder
+        reports - folder to open or create
+        report.html - report name
+
+    Open the report (Vs code and mac)
+    Right click on the report file in the report folder
+    Select copy path
+    Open a broswer
+    Paste and go the copied path
+    Report is displayed
