@@ -75,3 +75,11 @@ Running tests
     Open a broswer
     Paste and go the copied path
     Report is displayed
+
+    Hooks
+    create a environment.py file in the features folder
+    Different hooks:
+    before_all - the config will run before all tests executions start i.e open browser
+    after_all - the config will run before all tests executions Finished i.e close browser
+    before_scenario - the config will run before all tests  scenario executions start 
+    after_scenario - the config will run after all tests  scenario executions start i.e failure screenshot
