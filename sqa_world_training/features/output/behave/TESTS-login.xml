@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite time="13.088905572891235" tests='2' skipped='0'
+name='' failures='0' errors='0'><testcase time="6.505894422531128" name="Invalid_Login" status="passed"
+         classname="Login_Functionality" >
+            <system-out>
+            <![CDATA[
+            @scenario.begin
+                @negative   @regression   @login
+                scenario: Invalid Login
+e                given the user is on the login page ... passed in 3.773s 
+                when user enters wrong username and password ... passed in 0.5809s 
+                when clicks the login button ... passed in 2.152s 
+@scenario.end
+            ----------------------------------------------------------------------------------------------------
+            ]]>
+            </system-out>
+        </testcase><testcase time="6.583011150360107" name="Successful_Login_With_Valid_Credentials" status="passed"
+         classname="Login_Functionality" >
+            <system-out>
+            <![CDATA[
+            @scenario.begin
+                @smoke   @login
+                scenario: Successful login with valid credentials
+e                given the user is on the login page ... passed in 3.708s 
+                when the user enters valid username and password ... passed in 0.6459s 
+                when clicks the login button ... passed in 2.207s 
+                then the user should be redirected to the dashboard ... passed in 0.02167s 
+@scenario.end
+            ----------------------------------------------------------------------------------------------------
+            ]]>
+            </system-out>
+        </testcase></testsuite>

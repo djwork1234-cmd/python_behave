@@ -17,3 +17,5 @@ Feature: Login Testing with Scenario Outline
       | wrong_user               | secret_sauce |
       | wrong_user               | wrong_pass   |
       | standard_user            | wrong_pass   |
+
+
