@@ -175,12 +175,78 @@ Page Object Model (POM)
             #close the browser
             context.driver.quit()
     
-    
+ API Testing
+    Istallation: pip install behave requests
+    Test website: https://reqres.in/#how
+
+    Create a new feature file i.e API.feature
+        Feature: API Testing    
+            Scenario: Get a single user
+                Given I send a Get request to "https://reqres.in/api/users/2" with api key
+                Then the response status code should be 200
+
+    Create a Step pyhton file i.e API_steps.py
+        import requests
+        from behave import given, then
+
+        API_KEY = "regres-free-v1"
+        # Set up headers with the API key
+        HEADERS = {"x-api-key": API_KEY}
+
+        # Step definition to send a GET request with API key in headers
+        @given('I send a Get request to "{url}" with api key')
+        def step_send_get_request_with_api_key(context, url):
+            context.response = requests.get(url, headers=HEADERS)       
+            #print reponse body in a console
+            print("\n==== Response Body ====")
+            print(context.response.text)
+
+        # Step definition to check the response status code should be 200
+        @then('the response status code should be {status_code:d}')
+        def step_check_response_status_code(context, status_code):
+            #Assert that the API returned the expected status code
+            assert context.response.status_code == status_code, \
+                f"Expected status code {status_code}, but got {context.response.status_code}"
 
 
+    Execution Code: behave --no-capture features/API.feature
+    Result : 
+            USING RUNNER: behave.runner:Runner
+            Feature: API Testing # features/API.feature:1
 
+              Scenario: Get a single user                                                  # features/API.feature:2
+                Given I send a Get request to "https://reqres.in/api/users/2" with api key # features/steps/API_steps.py:9
 
+            ==== Response Body ====
+            {"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://           contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."},       "_meta":{"powered_by":"ReqRes","docs_url":"https://app.reqres.in/documentation","upgrade_url":"https://app.reqres.in/upgrade","example_url":"https://app.reqres.in/examples/        notes-app","variant":"v1_a","message":"Classic ReqRes still works. Projects add persistence, auth, and logs.    Given I send a Get request to "https://reqres.in/api/users/2"          with api key # features/steps/API_steps.py:9 0.173s
+                Then the response status code should be 200                                # features/steps/API_steps.py:17 0.000s
 
+            1 feature passed, 0 failed, 0 skipped
+            1 scenario passed, 0 failed, 0 skipped
+            2 steps passed, 0 failed, 0 skipped
+            Took 0min 0.174s
+
+    Failed Result:
+            USING RUNNER: behave.runner:Runner
+            Feature: API Testing # features/API.feature:1
+            
+              Scenario: Get a single user                                                  # features/API.feature:2
+                Given I send a Get request to "https://reqres.in/api/users/2" with api key # features/steps/API_steps.py:9
+            
+            ==== Response Body ====
+            {"data":{"id":2,"email":"janet.weaver@reqres.in","first_name":"Janet","last_name":"Weaver","avatar":"https://reqres.in/img/faces/2-image.jpg"},"support":{"url":"https://           contentcaddy.io?utm_source=reqres&utm_medium=json&utm_campaign=referral","text":"Tired of writing endless social media content? Let Content Caddy generate it for you."},       "_meta":{"powered_by":"ReqRes","docs_url":"https://app.reqres.in/documentation","upgrade_url":"https://app.reqres.in/upgrade","example_url":"https://app.reqres.in/examples/        notes-app","variant":"v1_a","message":"Classic ReqRes still works. Projects add persistence, auth, and logs.    Given I send a Get request to "https://reqres.in/api/users/2"          with api key # features/steps/API_steps.py:9 0.190s
+                Then the response status code should be 2001                               # features/steps/API_steps.py:17 0.000s
+                  ASSERT FAILED: Expected status code 2001, but got 200
+            
+            
+            
+            Failing scenarios:
+              features/API.feature:2  Get a single user
+            
+            0 features passed, 1 failed, 0 skipped
+            0 scenarios passed, 1 failed, 0 skipped
+            1 step passed, 1 failed, 0 skipped
+            Took 0min 0.190s
 
 Use Excelsheets for test data
     Installation
